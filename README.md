@@ -39,3 +39,7 @@ $ pnpm run test:e2e
 $ pnpm run test:cov
 ```
 
+## docker
+```bash
+$ docker run --name sucursal -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_USER=antilef -v /data:/var/lib/postgresql/data -d postgres:17
+```
