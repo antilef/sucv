@@ -13,7 +13,7 @@ jobs:
         name: Run test
       - run:
         command: npm run build
-        name: Build App
+        name: Build App 
 workflows:
   build-and-test:
     jobs:
