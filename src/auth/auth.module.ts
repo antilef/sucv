@@ -5,10 +5,12 @@ import { JwtModule } from "@nestjs/jwt";
 import { jwtConstants } from "./constants";
 import { HashService } from "./hash.service";
 import { UserRepository } from "./user.repository";
+import { PrismaModule } from "src/ prisma/prisma.module";
 
 
 @Module({
     imports: [
+      PrismaModule,
       JwtModule.register({
         global: true,
         secret: jwtConstants.secret,

@@ -26,8 +26,14 @@ export class AuthService {
         return 'works';
     }
 
-    async register(egisterData: RegisterUserDto){
-        console.log('service')
+    async register(registerData: RegisterUserDto){
+        const hashedPassword = await this.hashService.hash(registerData.password);
+        const user = await this.userRepository.save(registerData,hashedPassword);
+        const payload = { sub: user.id,name: user.name}
+        const value = {
+            access_token: await this.jwtService.signAsync(payload)
+        }
+        return value;
     }
 
 
