@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post, UseGuards,Request} from "@nestjs/common";
 import { LoginDto } from "./dto/login.dto";
 import { AuthService } from "./auth.service";
 import { RegisterUserDto } from "./dto/register.dto";
+import { AuthGuard } from "./auth.guard";
 
 @Controller('auth')
 export class AuthController{
@@ -10,7 +11,7 @@ export class AuthController{
     }
 
     @Post()
-    async login(@Body() loginDto: LoginDto): Promise<string> {
+    async login(@Body() loginDto: LoginDto){
         const {run,password} = loginDto;
         const valid = this.authService.checkRun(run);
         if(!valid){
@@ -19,10 +20,21 @@ export class AuthController{
 
         const token = this.authService.signIn(run,password);
 
-        return 'works'
+        return token
     }
     @Post('register')
     async register(@Body() registerDto: RegisterUserDto){
-        return this.authService.register(registerDto)
+        const { run } = registerDto;
+        const valid = this.authService.checkRun(run);
+        if(!valid){
+            return 'Not valid run'
+        }
+        return this.authService.register(registerDto)        
+    }
+
+    @UseGuards(AuthGuard)
+    @Get('Home')
+    getHome(@Request() req){
+        return req.user
     }
 }

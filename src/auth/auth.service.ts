@@ -11,7 +11,7 @@ export class AuthService {
 
     constructor(private jwtService: JwtService,private userRepository: UserRepository,private hashService: HashService){}
 
-    async signIn(run: string, password: string): Promise<string> {
+    async signIn(run: string, password: string) {
         const user: User = await this.userRepository.getUserBy(run)
         const hash = await this.hashService.hash(password)
         if(!this.hashService.compare(user.password,hash)){
@@ -23,7 +23,7 @@ export class AuthService {
             access_token: await this.jwtService.signAsync(payload)
         }
 
-        return 'works';
+        return value
     }
 
     async register(registerData: RegisterUserDto){
