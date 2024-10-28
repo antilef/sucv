@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { RegisterUserDto } from "./dto/register.dto";
 import { User } from "@prisma/client";
-import { UserRepository } from "./user.repository";
+import { UserRepository } from "../user/user.repository";
 import { HashService } from "./hash.service";
 
 
