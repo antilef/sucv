@@ -1,4 +1,5 @@
 version: 2.1
+
 orbs:
   node: circleci/node@5.0.2
 
@@ -8,17 +9,20 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
+          pkg-manager: npm  # Asegúrate de especificar el gestor de paquetes si es necesario
       - run:
-        command: npm run test
-        name: Run test
+          name: Run test
+          command: npm run test
       - run:
-        command: npm run build
-        name: Build App 
+          name: Build App
+          command: npm run build
+
 workflows:
+  version: 2
   build-and-test:
     jobs:
       - build-and-test:
-        filters:
-          branches:
-            only:
-              - main
+          filters:
+            branches:
+              only:
+                - main
