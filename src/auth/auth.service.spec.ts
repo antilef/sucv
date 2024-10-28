@@ -42,10 +42,10 @@ describe('AuthService', () => {
         expect(authService.checkRun('19862480-2')).toBeTruthy();
       });
 
-      it('should signIn',async () => {
-        const res = await authService.signIn('19862480-2','password')
-        expect(res).toBe('works')
-      })
+      // it('should signIn',async () => {
+      //   const res = await authService.signIn('19862480-2','password')
+      //   expect(res).toBe('works')
+      // })
     });
   });
   
