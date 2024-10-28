@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-          pkg-manager: pnpm  # Asegúrate de especificar el gestor de paquetes si es necesario
+          pkg-manager: npm  # Asegúrate de especificar el gestor de paquetes si es necesario
       - run:
           name: Run test
           command: npm run test
