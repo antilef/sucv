@@ -5,9 +5,10 @@ import { AuthModule } from "src/auth/auth.module";
 import { PrismaModule } from "src/ prisma/prisma.module";
 import { UserModule } from "src/user/user.module";
 import { ProductRepository } from "./product.repository";
+import { PlanModule } from "src/plan/plan.module";
 
 @Module({
-    imports: [AuthModule,PrismaModule,UserModule],
+    imports: [AuthModule,PrismaModule,UserModule,PlanModule],
     controllers: [HomeController],
     providers: [HomeService,ProductRepository],
     exports:[HomeService]
